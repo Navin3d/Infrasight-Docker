@@ -12,6 +12,8 @@ public class ServerModel implements Serializable {
 	private String id;
 
 	private String name;
+	
+	private String serverOwnerId;
 
 	private String description;
 
@@ -26,6 +28,6 @@ public class ServerModel implements Serializable {
 	private Double cpuLimit;
 
 	private Long ramLimit;
-
+	
 }
 

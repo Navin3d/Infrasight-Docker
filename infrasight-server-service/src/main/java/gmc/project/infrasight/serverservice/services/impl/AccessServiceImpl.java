@@ -88,4 +88,9 @@ public class AccessServiceImpl implements AccessService {
 		userDao.save(foundUser);
 	}
 
+	@Override
+	public UserEntity saveUser(UserEntity userEntity) {
+		return userDao.save(userEntity);
+	}
+
 }
