@@ -4,6 +4,8 @@ services:
   mongodb-server:
     image: "mongo"
     restart: "always"
+    volumes:
+      - ./infrasight-data:/data/db
     environment:
       MONGO_INITDB_ROOT_PASSWORD: mongopw
       MONGO_INITDB_ROOT_USERNAME: mongo
@@ -12,22 +14,17 @@ services:
     build: 
       context: "./infrasight-discovery-service"
       dockerfile: "Dockerfile"
-    ports:
-      - 8010:8010
     restart: "always"
 
   infrasight-auth-service:
     build: 
       context: "./infrasight-auth-service"
       dockerfile: "Dockerfile"
-    ports:
-      - 8011:8011
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
       - infrasight-discovery-service
     environment:
-      SERVER_PORT: 8011
       EUREKA_HOST: infrasight-discovery-service
       SPRING_DATA_MONGODB_HOST: mongodb-server
       SPRING_DATA_MONGODB_PORT: 27017
@@ -38,14 +35,11 @@ services:
     build: 
       context: "./infrasight-presentation-service"
       dockerfile: "Dockerfile"
-    ports:
-      - 8012:8012
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
       - infrasight-discovery-service
     environment:
-      SERVER_PORT: 8012
       EUREKA_HOST: infrasight-discovery-service
       SPRING_DATA_MONGODB_HOST: mongodb-server
       SPRING_DATA_MONGODB_PORT: 27017
@@ -56,32 +50,36 @@ services:
     build: 
       context: "./infrasight-prophet-service"
       dockerfile: "Dockerfile"
-    ports:
-      - 8013:8013
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
       - infrasight-discovery-service
     environment:
-      SERVER_PORT: 8013
       EUREKA_HOST: infrasight-discovery-service
       SPRING_DATA_MONGODB_HOST: mongodb-server
       SPRING_DATA_MONGODB_PORT: 27017
       SPRING_DATA_MONGODB_USERNAME: mongo
       SPRING_DATA_MONGODB_PASSWORD: mongopw
   
+  infrasight-ml-service:
+    build: 
+      context: "./infrasight-ml-service"
+      dockerfile: "Dockerfile"
+    restart: "unless-stopped"
+    depends_on:
+      - infrasight-discovery-service
+    environment:
+      EUREKA_HOST: infrasight-discovery-service
+  
   infrasight-server-service:
     build: 
       context: "./infrasight-server-service"
       dockerfile: "Dockerfile"
-    ports:
-      - 8014:8014
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
       - infrasight-prophet-service
     environment:
-      SERVER_PORT: 8014
       EUREKA_HOST: infrasight-discovery-service
       SPRING_DATA_MONGODB_HOST: mongodb-server
       SPRING_DATA_MONGODB_PORT: 27017
@@ -92,14 +90,12 @@ services:
     build: 
       context: "./infrasight-stats-capture-service"
       dockerfile: "Dockerfile"
-    ports:
-      - 8015:8015
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
-      - infrasight-server-service
+      - infrasight-ml-service
+      - infrasight-prophet-service
     environment:
-      SERVER_PORT: 8015
       EUREKA_HOST: infrasight-discovery-service
       SPRING_DATA_MONGODB_HOST: mongodb-server
       SPRING_DATA_MONGODB_PORT: 27017
@@ -114,7 +110,9 @@ services:
       - 8016:8016
     restart: "unless-stopped"
     depends_on:
-      - mongodb-server
+      - infrasight-auth-service
+      - infrasight-presentation-service
+      - infrasight-server-service
       - infrasight-stats-capture-service
     environment:
       SERVER_PORT: 8016
