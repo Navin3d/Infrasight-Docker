@@ -11,15 +11,11 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongo
   
   infrasight-discovery-service:
-    build: 
-      context: "./infrasight-discovery-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/eureka-discovery
     restart: "always"
 
   infrasight-auth-service:
-    build: 
-      context: "./infrasight-auth-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-auth-service
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
@@ -38,9 +34,7 @@ services:
       SPRING_DATA_MONGODB_PASSWORD: mongopw
 
   infrasight-presentation-service:
-    build: 
-      context: "./infrasight-presentation-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-presentation-service
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
@@ -59,9 +53,7 @@ services:
       SPRING_DATA_MONGODB_PASSWORD: mongopw
 
   infrasight-prophet-service:
-    build: 
-      context: "./infrasight-prophet-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/prophet-service
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
@@ -74,15 +66,11 @@ services:
       timeout: 10s
     environment:
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_DATA_MONGODB_HOST: mongodb-server
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_USERNAME: mongo
-      SPRING_DATA_MONGODB_PASSWORD: mongopw
+      SPRING_MAIL_USERNAME: 
+      SPRING_MAIL_PASSWORD: 
   
   infrasight-ml-service:
-    build: 
-      context: "./infrasight-ml-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-ml-service
     restart: "unless-stopped"
     depends_on:
       - infrasight-discovery-service
@@ -90,9 +78,7 @@ services:
       EUREKA_HOST: infrasight-discovery-service
   
   infrasight-server-service:
-    build: 
-      context: "./infrasight-server-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-server-service
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
@@ -111,9 +97,7 @@ services:
       SPRING_DATA_MONGODB_PASSWORD: mongopw
 
   infrasight-stats-capture-service:
-    build: 
-      context: "./infrasight-stats-capture-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-stats-capture-service
     restart: "unless-stopped"
     depends_on:
       - mongodb-server
@@ -133,11 +117,7 @@ services:
       SPRING_DATA_MONGODB_PASSWORD: mongopw
   
   infrasight-gatewsy-service:
-    build: 
-      context: "./infrasight-gatewsy-service"
-      dockerfile: "Dockerfile"
-    ports:
-      - 8016:8016
+    image: navin3d/infrasight-gatewsy-service
     restart: "unless-stopped"
     healthcheck:
       test: "exit 0"
@@ -163,9 +143,7 @@ services:
       SPRING_DATA_MONGODB_PASSWORD: mongopw
 
   infrasight-ui-service:
-    build: 
-      context: "./infrasight-ui-service"
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-ui-service
     restart: "unless-stopped"
     healthcheck:
       test: "exit 0"
@@ -178,9 +156,7 @@ services:
         condition: service_healthy
 
   infrasight-nginix:
-    build:
-      context: ./infrasight-nginx
-      dockerfile: "Dockerfile"
+    image: navin3d/infrasight-nginx
     depends_on:
       infrasight-ui-service:
         condition: service_healthy

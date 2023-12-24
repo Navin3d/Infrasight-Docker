@@ -41,6 +41,7 @@ export const isLoggedIn = () => {
 export const logout = () => {
     localStorage.setItem("isAuthenticated", false);
     localStorage.setItem("userId", "");
+    return false;
 }
 
 export const addServer = async (serverData) => {
