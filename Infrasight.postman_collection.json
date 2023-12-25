@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "e275f055-ede6-4e56-80bd-e82a7913bf0d",
+		"name": "Infrasight",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17195439"
+	},
+	"item": [
+		{
+			"name": "Server Service",
+			"item": [
+				{
+					"name": "Add Server",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ubuntu-Server-1\",\n    \"description\": \"This is an ubuntu server running in docker container.\",\n    \"host\": \"localhost\",\n    \"port\": 1022,\n    \"username\": \"navin\",\n    \"password\": \"navin\",\n    \"serverOwnerId\": \"smnavin65@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8016/server",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8016",
+							"path": [
+								"server"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TransferOwnership",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:49388/access/ownership/transfer/6505acc561313c7cacbc04c0/650d487999abc94d769daf54/650d487999abc94d769daf54",
+							"host": [
+								"localhost"
+							],
+							"port": "49388",
+							"path": [
+								"access",
+								"ownership",
+								"transfer",
+								"6505acc561313c7cacbc04c0",
+								"650d487999abc94d769daf54",
+								"650d487999abc94d769daf54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Provide Access",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:49388/access/provide/access/650322d2d3dad24cea7d033d/650d487999abc94d769daf54/650fe8c883380048d84d8a34",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "49388",
+							"path": [
+								"access",
+								"provide",
+								"access",
+								"650322d2d3dad24cea7d033d",
+								"650d487999abc94d769daf54",
+								"650fe8c883380048d84d8a34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke Access",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/access/revoke/access/650322dbd3dad24cea7d033e/650d487999abc94d769daf54/650fe8c883380048d84d8a34",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"access",
+								"revoke",
+								"access",
+								"650322dbd3dad24cea7d033e",
+								"650d487999abc94d769daf54",
+								"650fe8c883380048d84d8a34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:49800/server/650322dbd3dad24cea7d033e/user/650d487999abc94d769daf54",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "49800",
+							"path": [
+								"server",
+								"650322dbd3dad24cea7d033e",
+								"user",
+								"650d487999abc94d769daf54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Server",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"650322dbd3dad24cea7d033e\",\n    \"name\": \"Ubuntu-Server-2\",\n    \"description\": \"This is an ubuntu containmer running in Docker.\",\n    \"host\": \"localhost\",\n    \"port\": 2022,\n    \"username\": \"navin\",\n    \"password\": \"navin\",\n    \"cpuLimit\": 10,\n    \"ramLimit\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/server/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"server",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add  Scheduled Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serverId\": \"650322d2d3dad24cea7d033d\",\n    \"tittle\": \"Virus Scan\",\n    \"command\": \"lynis audit system --quick\",\n    \"atEndOfDay\": true,\n    \"deleteAfterExecution\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:50406/task",
+							"host": [
+								"localhost"
+							],
+							"port": "50406",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Service",
+			"item": [
+				{
+					"name": "En-Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Navin3d\",\n  \"employeeId\": \"1111\",\n  \"companyEmail\": \"smnavin65@gmail.com\",\n  \"username\": \"navin\",\n  \"passwordPlain\": \"navin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"navin\",\n    \"password\": \"navin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Presentation Service",
+			"item": [
+				{
+					"name": "GET Servers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    servers(limit: 100, page: 0) {\n        name,\n        description,\n        host,\n        isActive,\n        ramCPU {\n            availableRam,\n            cpuPerformance\n        },\n        discStats {\n            discMounts {\n                available,\n                size\n            }\n        },\n        projects {\n            id\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8016/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8016",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Servers List",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    servers(limit: 100, page: 0) {\n        name,\n        description,\n        ramCPU {\n            availableRam,\n            totalRam,\n            cpuPerformance,\n        },\n        discStats {\n            discMounts {\n                use,\n            },\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8016/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8016",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Server",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n        server(id: \"6505acc561313c7cacbc04c0\", from: \"2023-09-20T00:00\", to: \"2023-09-25T00:00\") {\n        id\n        name,\n        description,\n        host,\n        isActive,\n        ramCPU {\n            availableRam,\n            totalRam,\n            cpuPerformance,\n            capturedAt\n            serverLoad\n            freeSwap\n            totalSwap\n        },\n        discStats {\n            discMounts {\n                fileSystem,\n                used,\n                use,\n                available,\n                size,\n                mountedOn\n            }\n            capturedAt\n        }\n        ioStats {\n            ioDatas {\n                device\n                transferPerSecond\n                readPerSecond\n                writePerSecond\n                averageRead\n                averageWrite\n            }\n            capturedAt\n        },\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    user(id: \"650d487999abc94d769daf54\") {\n        id\n        companyEmail\n        adminOfServers {\n            id\n            name,\n        description,\n        ramCPU {\n            availableRam,\n            totalRam,\n            cpuPerformance,\n        },\n        discStats {\n            discMounts {\n                use,\n            },\n        }\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:51819/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51819",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Servers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    userServers(userId: \"650d487999abc94d769daf54\", from: \"2023-08-14\", to: \"2023-09-25\") {\n        id\n        ramCPU {\n            availableRam,\n            totalRam,\n            cpuPerformance\n        },\n        discStats {\n            discMounts {\n                use,\n            },\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Server Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n        server(id: \"650322d2d3dad24cea7d033d\", from: \"2023-09-20T00:00\", to: \"2023-09-25T00:00\") {\n        id\n        name\n        isActive\n        projects {\n            id\n            programmingLanguage\n            framework\n            ramCpuStats {\n                cpuPerformance\n                ramPerformance\n                capturedAt\n            }\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SERVER DETAILS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n        server(id: \"650322d2d3dad24cea7d033d\", from: \"2023-09-20T00:00\", to: \"2023-09-25T00:00\") {\n        id\n                name\n                description\n                isActive\n                serverUpTime\n        tasks {\n            id\n            tittle\n        }\n        serverUsers {\n            id\n            companyEmail\n        }\n        serverAdmin {\n            id\n        }\n        projects {\n            id\n            programmingLanguage\n            framework\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n                users {\n                id\n                companyEmail\n            }\n        }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n        project(uniqueId: \"Lifter-Consultancy-Service\") {\n            id\n            programmingLanguage\n            framework\n            ramCpuStats {\n                cpuPerformance\n                ramPerformance\n                capturedAt\n            }\n        }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Capture Service",
+			"item": [
+				{
+					"name": "Execute Command",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serverId\": \"650322d2d3dad24cea7d033d\",\n    \"command\": \"df -h\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/console",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"console"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run Security Scan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/console/scan/6505acc561313c7cacbc04c0",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"console",
+								"scan",
+								"6505acc561313c7cacbc04c0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ML Service",
+			"item": [
+				{
+					"name": "Predict Scaling",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/scale_trigger/1/0/10/0/50/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"scale_trigger",
+								"1",
+								"0",
+								"10",
+								"0",
+								"50",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prophet Service",
+			"item": [
+				{
+					"name": "Send Mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"smnavin65@gmail.com\",\n    \"subject\": \"testing\",\n    \"body\": \"api\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
