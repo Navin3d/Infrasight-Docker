@@ -7,8 +7,8 @@ services:
     volumes:
       - ./infrasight-data:/data/db
     environment:
-      MONGO_INITDB_ROOT_PASSWORD: mongopw
-      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_PWD
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_USER
   
   infrasight-discovery-service:
     build: 
@@ -32,10 +32,10 @@ services:
       timeout: 10s
     environment:
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_DATA_MONGODB_HOST: mongodb-server
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_USERNAME: mongo
-      SPRING_DATA_MONGODB_PASSWORD: mongopw
+      SPRING_DATA_MONGODB_HOST: $MONGO_HOST
+      SPRING_DATA_MONGODB_PORT: $MONGO_PORT
+      SPRING_DATA_MONGODB_USERNAME: $MONGO_USER
+      SPRING_DATA_MONGODB_PASSWORD: $MONGO_PWD
 
   infrasight-presentation-service:
     build: 
@@ -53,10 +53,10 @@ services:
       timeout: 10s
     environment:
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_DATA_MONGODB_HOST: mongodb-server
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_USERNAME: mongo
-      SPRING_DATA_MONGODB_PASSWORD: mongopw
+      SPRING_DATA_MONGODB_HOST: $MONGO_HOST
+      SPRING_DATA_MONGODB_PORT: $MONGO_PORT
+      SPRING_DATA_MONGODB_USERNAME: $MONGO_USER
+      SPRING_DATA_MONGODB_PASSWORD: $MONGO_PWD
 
   infrasight-prophet-service:
     build: 
@@ -74,8 +74,8 @@ services:
       timeout: 10s
     environment:
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_MAIL_USERNAME: 
-      SPRING_MAIL_PASSWORD: 
+      SPRING_MAIL_USERNAME: $EMAIL_ADDRESS
+      SPRING_MAIL_PASSWORD: $EMAIL_PASSWORD
 
   infrasight-ml-service:
     build: 
@@ -103,10 +103,10 @@ services:
       timeout: 10s
     environment:
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_DATA_MONGODB_HOST: mongodb-server
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_USERNAME: mongo
-      SPRING_DATA_MONGODB_PASSWORD: mongopw
+      SPRING_DATA_MONGODB_HOST: $MONGO_HOST
+      SPRING_DATA_MONGODB_PORT: $MONGO_PORT
+      SPRING_DATA_MONGODB_USERNAME: $MONGO_USER
+      SPRING_DATA_MONGODB_PASSWORD: $MONGO_PWD
 
   infrasight-stats-capture-service:
     build: 
@@ -125,10 +125,10 @@ services:
       timeout: 10s
     environment:
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_DATA_MONGODB_HOST: mongodb-server
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_USERNAME: mongo
-      SPRING_DATA_MONGODB_PASSWORD: mongopw
+      SPRING_DATA_MONGODB_HOST: $MONGO_HOST
+      SPRING_DATA_MONGODB_PORT: $MONGO_PORT
+      SPRING_DATA_MONGODB_USERNAME: $MONGO_USER
+      SPRING_DATA_MONGODB_PASSWORD: $MONGO_PWD
   
   infrasight-gatewsy-service:
     build: 
@@ -153,10 +153,10 @@ services:
     environment:
       SERVER_PORT: 8016
       EUREKA_HOST: infrasight-discovery-service
-      SPRING_DATA_MONGODB_HOST: mongodb-server
-      SPRING_DATA_MONGODB_PORT: 27017
-      SPRING_DATA_MONGODB_USERNAME: mongo
-      SPRING_DATA_MONGODB_PASSWORD: mongopw
+      SPRING_DATA_MONGODB_HOST: $MONGO_HOST
+      SPRING_DATA_MONGODB_PORT: $MONGO_PORT
+      SPRING_DATA_MONGODB_USERNAME: $MONGO_USER
+      SPRING_DATA_MONGODB_PASSWORD: $MONGO_PWD
 
   infrasight-ui-service:
     build: 

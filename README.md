@@ -1,12 +1,29 @@
 # Infrasight-Spring-Boot
 This is an Spring Boot microservice application that has provisions to connect through SSh and Grab server stats.
 
+## Pre-Requirements:
+- Create .env file in root of the project.
+- Replace these environment variables.
+```bash
+EMAIL_ADDRESS = 
+EMAIL_PASSWORD = 
+
+MONGO_USER = 
+MONGO_PWD = 
+MONGO_HOST = 
+MONGO_PORT = 
+```
+
 ## Useful Commands
 
 - Command to start a local Ubuntu server in docker
 ```bash
 docker run -it -p 23000:3000 -p 28080:8080 -p 28000:8000 -p 24200:4200 -p 2022:22
 --name ubuntu-server-2 navin3d/ubuntu-server
+```
+- Command to run other compose file.
+```bash
+docker compose -f docker-compose-dev.yml up
 ```
 
 ## Password approach.
